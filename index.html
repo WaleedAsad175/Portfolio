@@ -35,8 +35,8 @@
           "telephone": "+92 311 9666212",
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Skopje",
-            "addressCountry": "North Macedonia"
+            "addressLocality": "Pakistan",
+            "addressCountry": "Pakistan"
           },
           "sameAs": [
             "https://www.linkedin.com/in/muhammad-waleed-asad-8532ab262/",
@@ -255,6 +255,15 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            background: transparent;
+            border: none;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .mobile-menu-overlay,
+        .mobile-menu-panel {
+            display: none;
         }
 
         /* Hero Section */
@@ -352,19 +361,41 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            --hero-rotate-x: 0deg;
+            --hero-rotate-y: 0deg;
+            transform: translate(-50%, -50%) rotateX(var(--hero-rotate-x)) rotateY(var(--hero-rotate-y));
             width: 320px;
             height: 420px;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 280ms ease;
+            z-index: 10;
+        }
+
+        .hero-image-bg {
+            position: absolute;
+            inset: 8px;
+            border-radius: 26px;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.8), rgba(226,226,226,0.35) 65%, rgba(180,180,180,0.2) 100%);
+            filter: blur(1px);
+            transform: translateZ(-45px) scale(0.94);
+        }
+
+        .hero-image-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
-            z-index: 10;
+            transform: translateZ(38px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.2);
         }
 
         .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transform: scale(1.02) translateZ(24px);
         }
 
         /* Section Styles */
@@ -1361,12 +1392,156 @@
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                display: none;
+            body.mobile-menu-open {
+                overflow: hidden;
             }
 
             .mobile-header {
                 display: flex;
+                background: transparent;
+                padding: 18px 20px;
+                z-index: 10001;
+            }
+
+            .mobile-header .logo {
+                color: #1a1a1a;
+                font-size: 16px;
+            }
+
+            .mobile-header .menu-btn {
+                color: #fff;
+                background: #1a1a1a;
+                border-radius: 999px;
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .navbar-wrapper {
+                display: none;
+            }
+
+            .mobile-menu-overlay {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.35);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.25s ease;
+                z-index: 10002;
+            }
+
+            .mobile-menu-panel {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: min(92vw, 360px);
+                height: 100dvh;
+                padding: 26px 26px 32px;
+                background: #efefef;
+                transform: translateX(-105%);
+                transition: transform 0.3s ease;
+                z-index: 10003;
+                overflow-y: auto;
+            }
+
+            body.mobile-menu-open .mobile-menu-overlay {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            body.mobile-menu-open .mobile-menu-panel {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 16px;
+            }
+
+            .mobile-menu-avatar {
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .mobile-menu-close {
+                background: transparent;
+                border: none;
+                color: #111;
+                font-size: 28px;
+                line-height: 1;
+                cursor: pointer;
+            }
+
+            .mobile-menu-location {
+                font-size: 13px;
+                color: #6a6a6a;
+                margin-bottom: 10px;
+            }
+
+            .mobile-menu-meta {
+                display: flex;
+                gap: 20px;
+                font-size: 12px;
+                color: #8a8a8a;
+                margin-bottom: 18px;
+            }
+
+            .mobile-menu-label {
+                font-size: 13px;
+                color: #8b8b8b;
+                margin-bottom: 12px;
+            }
+
+            .mobile-menu-links {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 30px;
+            }
+
+            .mobile-menu-link {
+                font-size: clamp(2rem, 10.5vw, 3rem);
+                line-height: 1;
+                letter-spacing: -1px;
+                color: #7b7b7b;
+                font-weight: 500;
+            }
+
+            .mobile-menu-contact-label,
+            .mobile-menu-social-label {
+                font-size: 13px;
+                color: #8b8b8b;
+                margin-bottom: 8px;
+            }
+
+            .mobile-menu-contact a {
+                display: block;
+                font-size: 15px;
+                color: #727272;
+                margin-bottom: 8px;
+                line-height: 1.25;
+            }
+
+            .mobile-menu-social {
+                margin-top: 8px;
+            }
+
+            .mobile-menu-social-links {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .mobile-menu-social-links a {
+                color: #7d7d7d;
+                font-size: 16px;
             }
 
             .hero {
@@ -1391,8 +1566,8 @@
                 left: auto;
                 transform: none;
                 margin: 40px auto;
-                width: 220px;
-                height: 300px;
+                width: min(82vw, 320px);
+                height: min(106vw, 420px);
             }
 
             .hero-name {
@@ -1455,11 +1630,47 @@
     <!-- Mobile Header -->
     <div class="mobile-header">
         <a href="#" class="logo">Waleed Asad</a>
-        <a href="#menu" class="menu-btn">
+        <button type="button" id="mobile-menu-toggle" class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
             <span>☰</span>
             <span>Menu</span>
-        </a>
+        </button>
     </div>
+
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    <aside class="mobile-menu-panel" id="mobile-menu-panel" aria-hidden="true">
+        <div class="mobile-menu-top">
+            <img src="./assets/portfolio_about.jpg" alt="Waleed Asad" class="mobile-menu-avatar">
+            <button type="button" class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
+        </div>
+        <p class="mobile-menu-location">Based in Pakistan</p>
+        <div class="mobile-menu-meta">
+            <span id="mobile-local-time">--:--</span>
+            <span>GMT +5</span>
+        </div>
+        <p class="mobile-menu-label">Main menu</p>
+        <nav class="mobile-menu-links">
+            <a href="#skills" class="mobile-menu-link">Skills</a>
+            <a href="#about" class="mobile-menu-link">About</a>
+            <a href="#portfolio" class="mobile-menu-link">Portfolio</a>
+            <a href="#testimonials" class="mobile-menu-link">Testimonials</a>
+            <a href="#contact" class="mobile-menu-link">Contact</a>
+        </nav>
+        <div class="mobile-menu-contact">
+            <p class="mobile-menu-contact-label">For contact inquiries</p>
+            <a href="mailto:waleedasad175@gmail.com">waleedasad175@gmail.com</a>
+            <a href="tel:+923119666212">+92 311 9666212</a>
+        </div>
+        <div class="mobile-menu-social">
+            <p class="mobile-menu-social-label">Social Media</p>
+            <div class="mobile-menu-social-links">
+                <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/in/muhammad-waleed-asad-8532ab262/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/923119666212" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-solid fa-paper-plane"></i></a>
+            </div>
+        </div>
+    </aside>
 
     <!-- Navigation -->
     <div class="navbar-wrapper">
@@ -1488,12 +1699,15 @@
                 <span class="hero-title">Frontend Developer</span>
                 <h1 class="hero-name">Asad</h1>
                 <div class="hero-location">
-                    Skopje, Macedonia - <span id="local-time">--:--</span> GMT+2
+                    Pakistan - <span id="local-time">--:--</span> GMT+5
                 </div>
             </div>
         </div>
         <div class="hero-image">
-            <img src="./assets/portfolio_hero.jpg" alt="Waleed Asad">
+            <div class="hero-image-bg"></div>
+            <div class="hero-image-frame">
+                <img src="./assets/portfolio_hero.jpg" alt="Waleed Asad">
+            </div>
         </div>
     </section>
 
@@ -2130,10 +2344,15 @@
         // Local Time Update
         function updateLocalTime() {
             const timeElement = document.getElementById('local-time');
+            const mobileTimeElement = document.getElementById('mobile-local-time');
             if (timeElement) {
                 const now = new Date();
-                const options = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Skopje' };
-                timeElement.textContent = now.toLocaleTimeString('en-US', options);
+                const options = { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Karachi' };
+                const formattedTime = now.toLocaleTimeString('en-US', options);
+                timeElement.textContent = formattedTime;
+                if (mobileTimeElement) {
+                    mobileTimeElement.textContent = formattedTime;
+                }
             }
         }
         updateLocalTime();
@@ -2271,6 +2490,74 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+        const mobileMenuLabel = mobileMenuToggle ? mobileMenuToggle.querySelector('span:last-child') : null;
+
+        function closeMobileMenu() {
+            if (!mobileMenuToggle || !mobileMenuPanel) return;
+            document.body.classList.remove('mobile-menu-open');
+            mobileMenuPanel.setAttribute('aria-hidden', 'true');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            if (mobileMenuLabel) mobileMenuLabel.textContent = 'Menu';
+        }
+
+        if (mobileMenuToggle && mobileMenuPanel) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isOpen = document.body.classList.toggle('mobile-menu-open');
+                mobileMenuPanel.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                if (mobileMenuLabel) mobileMenuLabel.textContent = isOpen ? 'Close' : 'Menu';
+            });
+
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', closeMobileMenu);
+            }
+
+            if (mobileMenuOverlay) {
+                mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeMobileMenu();
+                }
+            });
+
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        closeMobileMenu();
+                    }
+                });
+            });
+        }
+
+        // Hero image layered 3D tilt (pointer devices only)
+        const heroImage3d = document.querySelector('.hero-image');
+        const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+        if (heroImage3d && canTilt) {
+            heroImage3d.addEventListener('pointermove', (event) => {
+                const rect = heroImage3d.getBoundingClientRect();
+                const relativeX = (event.clientX - rect.left) / rect.width;
+                const relativeY = (event.clientY - rect.top) / rect.height;
+                const rotateY = (relativeX - 0.5) * 10;
+                const rotateX = (0.5 - relativeY) * 10;
+
+                heroImage3d.style.setProperty('--hero-rotate-x', `${rotateX.toFixed(2)}deg`);
+                heroImage3d.style.setProperty('--hero-rotate-y', `${rotateY.toFixed(2)}deg`);
+            });
+
+            heroImage3d.addEventListener('pointerleave', () => {
+                heroImage3d.style.setProperty('--hero-rotate-x', '0deg');
+                heroImage3d.style.setProperty('--hero-rotate-y', '0deg');
+            });
+        }
 
         // Smooth Scroll for Navigation Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
