@@ -4,7 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waleed Asad - Frontend Developer</title>
-    <meta name="description" content="High-performing frontend developer. I build websites, web apps, and desktop tools from scratch with Next.js, Angular, HTML/CSS/JS, and .NET. Based in Skopje.">
+    <meta name="title" content="Waleed Asad - Frontend Developer">
+    <meta name="description" content="Frontend developer building fast, conversion-focused websites, web apps, and desktop tools with Angular, Next.js, JavaScript, and .NET.">
+    <meta name="keywords" content="Waleed Asad, frontend developer, Angular developer, Next.js developer, JavaScript developer, portfolio">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Waleed Asad">
+    <link rel="canonical" href="/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Waleed Asad - Frontend Developer">
+    <meta property="og:description" content="Frontend developer building fast, conversion-focused websites, web apps, and desktop tools with Angular, Next.js, JavaScript, and .NET.">
+    <meta property="og:url" content="/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Waleed Asad - Frontend Developer">
+    <meta name="twitter:description" content="Frontend developer building fast, conversion-focused websites, web apps, and desktop tools with Angular, Next.js, JavaScript, and .NET.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Waleed Asad",
+          "jobTitle": "Frontend Developer",
+          "description": "Frontend developer building websites, web apps, and desktop tools with Angular, Next.js, JavaScript, and .NET.",
+          "email": "mailto:waleedasad175@gmail.com",
+          "telephone": "+92 311 9666212",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Skopje",
+            "addressCountry": "North Macedonia"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/muhammad-waleed-asad-8532ab262/",
+            "https://wa.me/923119666212"
+          ],
+          "knowsAbout": [
+            "Frontend Development",
+            "Angular",
+            "Next.js",
+            "JavaScript",
+            "TypeScript",
+            ".NET",
+            "WPF"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How do you ensure frontend code quality at speed?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "I use a build-first workflow with strict structure, reusable components, and continuous testing in real browser conditions. This helps me ship quickly without sacrificing maintainability."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What kinds of projects have you built?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Landing pages, SaaS dashboards, internal tools, customer portals, and desktop-style utilities. I adapt to startup speed and enterprise-level complexity equally well."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you work independently or with teams?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Both. I can own full frontend delivery solo or plug into existing engineering teams. I collaborate well with product, backend, QA, and stakeholders to keep delivery aligned."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can you handle large, complex frontend systems?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I have worked on multi-page and app-like systems with heavy data flow, role-based interfaces, and scalable component structures. Complexity is where I perform best."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -266,8 +353,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 220px;
-            height: 300px;
+            width: 320px;
+            height: 420px;
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 16px 40px rgba(0,0,0,0.15);
@@ -1403,7 +1490,7 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=700&fit=crop" alt="Waleed Asad">
+            <img src="./portfolio_hero.jpg" alt="Waleed Asad">
         </div>
     </section>
 
@@ -1544,7 +1631,7 @@
                     </div>
                 </div>
                 <div class="about-image fade-in">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=700&fit=crop" alt="Waleed Asad">
+                    <img src="./portfolio_about.jpg" alt="Waleed Asad">
                 </div>
             </div>
         </div>
@@ -1945,41 +2032,45 @@
                     <h3 style="font-size: 2.5rem; font-weight: 600; margin-bottom: 10px; color: #1a1a1a;">How can I help?</h3>
                     <p style="color: #666; margin-bottom: 40px;">I would love to hear more about your project or company.</p>
 
-                    <form onsubmit="event.preventDefault(); alert('Thank you for your message! I will get back to you soon.');">
+                    <form id="contact-form" method="POST">
+                        <input type="hidden" name="access_key" value="8561fcfd-c568-4728-95f7-eeec63781d9c">
+                        <input type="hidden" name="subject" value="New portfolio contact message">
+                        <input type="hidden" name="from_name" value="Waleed Asad Portfolio">
                         <div class="form-group">
                             <label class="form-label">Your Full Name <span>*</span></label>
-                            <input type="text" class="form-input" placeholder="John Smith *" required>
+                            <input type="text" name="name" class="form-input" placeholder="John Smith *" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Your Role <span>*</span></label>
-                            <input type="text" class="form-input" placeholder="Founder, Recruiter, Freelancer, etc. *" required>
+                            <input type="text" name="role" class="form-input" placeholder="Founder, Recruiter, Freelancer, etc. *" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Your E-mail Address <span>*</span></label>
-                            <input type="email" class="form-input" placeholder="mail@example.com *" required>
+                            <input type="email" name="email" class="form-input" placeholder="mail@example.com *" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Your status? <span>*</span></label>
                             <div class="radio-group">
                                 <div class="radio-item">
-                                    <input type="radio" name="status" id="project" value="project">
+                                    <input type="radio" name="status" id="project" value="I have a project" required>
                                     <label for="project">I have a project</label>
                                 </div>
                                 <div class="radio-item">
-                                    <input type="radio" name="status" id="recruiter" value="recruiter">
+                                    <input type="radio" name="status" id="recruiter" value="I am a recruiter">
                                     <label for="recruiter">I am a recruiter</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">More info <span>*</span></label>
-                            <textarea class="form-input form-textarea" placeholder="What's this about? Project, hiring, or opportunity? *" required></textarea>
+                            <textarea name="message" class="form-input form-textarea" placeholder="What's this about? Project, hiring, or opportunity? *" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Submit <i class="fas fa-arrow-right"></i></button>
+                        <p id="form-status" style="margin-top: 14px; font-size: 14px; color: #666;"></p>
                     </form>
                 </div>
                 <div class="contact-image fade-in">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=600&fit=crop" alt="Waleed Asad">
+                    <img src="./portfolio_hero.jpg" alt="Waleed Asad">
                     <div class="badge">
                         <span class="badge-icon"><i class="fas fa-trophy"></i></span>
                         <span>Top Rated</span>
@@ -2052,6 +2143,64 @@
                 alert('Email copied to clipboard: ' + email);
             }).catch(err => {
                 console.error('Failed to copy email:', err);
+            });
+        }
+
+        // Contact form submit via Web3Forms
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const submitButton = contactForm.querySelector('.submit-btn');
+                const originalButtonContent = submitButton ? submitButton.innerHTML : '';
+                const formData = new FormData(contactForm);
+                const payload = Object.fromEntries(formData.entries());
+
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = 'Sending...';
+                }
+
+                if (formStatus) {
+                    formStatus.style.color = '#666';
+                    formStatus.textContent = 'Sending your message...';
+                }
+
+                try {
+                    const response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        if (formStatus) {
+                            formStatus.style.color = '#2d7a2d';
+                            formStatus.textContent = 'Thanks! Your message has been sent successfully.';
+                        }
+                        contactForm.reset();
+                    } else {
+                        throw new Error(result.message || 'Failed to send message.');
+                    }
+                } catch (error) {
+                    if (formStatus) {
+                        formStatus.style.color = '#b00020';
+                        formStatus.textContent = error.message || 'Something went wrong. Please try again.';
+                    }
+                } finally {
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonContent;
+                    }
+                }
             });
         }
 
