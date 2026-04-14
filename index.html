@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waleed Asad - Frontend Developer</title>
+    <meta name="description" content="High-performing frontend developer. I build websites, web apps, and desktop tools from scratch with Next.js, Angular, HTML/CSS/JS, and .NET. Based in Skopje.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* CSS Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #252525;
+            background-color: #ebebeb;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Intro */
+        .intro-overlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            color: #fff;
+            display: grid;
+            place-items: center;
+            z-index: 100000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .intro-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-text {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        /* Navigation */
+        .navbar-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 9999;
+            background: linear-gradient(to top, #ebebebf2 0%, #ebebebbf 75%, #ebebeb00 100%);
+            backdrop-filter: blur(4px) saturate(180%);
+            -webkit-backdrop-filter: blur(4px) saturate(180%);
+            padding: 22px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            box-shadow: 0 12px 30px #eaeaea;
+        }
+
+        .navbar {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            z-index: auto;
+            background: #121212;
+            border-radius: 50px;
+            padding: 5px 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            /* box-shadow: 0 4px 30px rgba(0,0,0,0.4); */
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-btn {
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover {
+            color: #e27500;
+        }
+
+        .nav-btn.primary {
+            background: #e67d09;
+            color: #fff;
+        }
+
+        .nav-btn.primary:hover {
+            background: #fff;
+            color: #333;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1a1a1a;
+            padding: 15px 20px;
+            z-index: 9999;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-header .logo {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .mobile-header .menu-btn {
+            color: #fff;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px 110px;
+            background: #ececec;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.45;
+            filter: brightness(0.9) contrast(1.05);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 25% 18%, rgba(255,255,255,0.8), rgba(240,240,240,0.55) 55%, rgba(235,235,235,0.35) 100%),
+                linear-gradient(120deg, rgba(255,255,255,0.3), rgba(0,0,0,0.04));
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left, .hero-right {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-left {
+            align-items: flex-start;
+        }
+
+        .hero-right {
+            align-items: flex-end;
+            text-align: right;
+        }
+
+        .hero-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .hero-name {
+            font-size: clamp(3.8rem, 9vw, 6.2rem);
+            font-weight: 700;
+            color: #161616;
+            line-height: 0.9;
+            letter-spacing: -3px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .hero-location {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 220px;
+            height: 300px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .section-title span {
+            color: #e27500;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: #666;
+            margin-top: 20px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #eaeaea;
+            padding-bottom: 200px;
+        }
+
+        .skills-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .skill-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 34px;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.04);
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+            position: sticky;
+            top: 100px;
+            margin-bottom: 20px;
+        }
+
+        .skill-card:nth-child(1) {
+            top: 100px;
+            z-index: 1;
+            transform: rotate(0deg) !important;
+        }
+
+        .skill-card:nth-child(2) {
+            top: 120px;
+            z-index: 2;
+            transform: rotate(0deg) !important;
+        }
+
+        .skill-card:nth-child(3) {
+            top: 140px;
+            z-index: 3;
+            transform: rotate(0deg) !important;
+        }
+
+        .skill-card:nth-child(4) {
+            top: 160px;
+            z-index: 4;
+            transform: rotate(0deg) !important;
+        }
+
+        .skill-card:nth-child(5) {
+            top: 180px;
+            z-index: 5;
+        }
+
+        .skill-card:nth-child(6) {
+            top: 200px;
+            z-index: 6;
+        }
+
+        .skill-card:nth-child(7) {
+            top: 220px;
+            z-index: 7;
+        }
+
+        .skill-card:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .skill-tag {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .skill-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .skill-desc {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .skill-tools {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .skill-tools li {
+            margin-bottom: 4px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .skill-tools li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        .skills-phone {
+            position: sticky;
+            top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 470px;
+            background: transparent;
+            border-radius: 28px;
+            padding: 0;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #2a2a2a;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 16px 45px rgba(0,0,0,0.2);
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .phone-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: #fff;
+        }
+
+        .phone-content h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .phone-content p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* About Section */
+        .about {
+            background: #eaeaea;
+        }
+
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content {
+            max-width: 500px;
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .about-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #e27500;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #c96500;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #333;
+            border: 1px solid #333;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        .rating-box {
+            margin-top: 40px;
+        }
+
+        .stars {
+            color: #e27500;
+            font-size: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .rating-box p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #fff;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #e27500;
+            color: #fff;
+            border-color: #e27500;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 350px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        /* Marquee */
+        .marquee-section {
+            background: #eaeaea;
+            padding: 30px 0;
+            overflow: hidden;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 30s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            font-size: 15px;
+            color: #999;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .marquee-content span::after {
+            content: '/';
+            position: absolute;
+            right: 0;
+            color: #ccc;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Awards Section */
+        .awards {
+            background: #eaeaea;
+        }
+
+        .awards-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .award-item {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1fr;
+            gap: 30px;
+            padding: 25px 0;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .award-item:hover {
+            background: rgba(255,255,255,0.5);
+            margin: 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .award-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .award-org {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .award-date {
+            font-size: 14px;
+            color: #999;
+            text-align: right;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: #eaeaea;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 50px;
+        }
+
+        .portfolio-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #fff;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-cta-btn:hover {
+            background: #e27500;
+            color: #fff;
+            border-color: #e27500;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            background: #f5f5f5;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .portfolio-item:hover {
+            border-color: #ccc;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.02);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: #eaeaea;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 50px;
+        }
+
+        .download-cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #fff;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .download-cv-btn:hover {
+            background: #e27500;
+            color: #fff;
+            border-color: #e27500;
+        }
+
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exp-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 30px;
+            padding: 25px 0;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .exp-item:hover {
+            background: rgba(255,255,255,0.5);
+            margin: 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .exp-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .exp-company {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .exp-date {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: #eaeaea;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: #f5f5f5;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-stars {
+            color: #e27500;
+            font-size: 16px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .testimonial-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+        }
+
+        .testimonial-role {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .testimonial-date {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: #eaeaea;
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #f5f5f5;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .faq-question {
+            padding: 22px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #fff;
+        }
+
+        .faq-icon {
+            font-size: 20px;
+            color: #1a1a1a;
+            transition: transform 0.3s ease;
+            font-weight: 300;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #eaeaea;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-form {
+            max-width: 500px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-label span {
+            color: #e27500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 0;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            font-size: 15px;
+            color: #333;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: #e27500;
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #e27500;
+        }
+
+        .radio-item label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: #dc7a09;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #c96d06;
+        }
+
+        .contact-image {
+            position: relative;
+        }
+
+        .contact-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 10px;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .badge-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        .contact-quote {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 16px;
+            color: #fff;
+        }
+
+        .contact-quote p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .contact-quote .name {
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #eaeaea;
+            padding: 80px 0 40px;
+            overflow: hidden;
+        }
+
+        .footer-marquee {
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .footer-marquee-content {
+            display: flex;
+            animation: footerMarquee 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .footer-marquee-content span {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: #1a1a1a;
+            padding: 0 30px;
+        }
+
+        .footer-marquee-content .star {
+            color: #1a1a1a;
+        }
+
+        @keyframes footerMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .footer-large-text {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px #ccc;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: -5px;
+            opacity: 0.5;
+        }
+
+        .footer-contact {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .footer-contact a {
+            display: block;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #e27500;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: -15px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: #1a1a1a;
+            color: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99999;
+            border: none;
+            font-size: 18px;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #e27500;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                gap: 60px;
+            }
+
+            .hero-image {
+                width: 250px;
+                height: 350px;
+            }
+
+            .skills-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-phone {
+                display: none;
+            }
+
+            .about-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                display: none;
+            }
+
+            .mobile-header {
+                display: flex;
+            }
+
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-left, .hero-right {
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero-image {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 40px auto;
+                width: 220px;
+                height: 300px;
+            }
+
+            .hero-name {
+                font-size: 3.5rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .portfolio-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .award-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .award-date {
+                text-align: left;
+            }
+
+            .exp-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .exp-date {
+                text-align: left;
+            }
+
+            .about-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-overlay" id="intro-overlay">
+        <div class="intro-text" id="intro-text">Hello</div>
+    </div>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="#" class="logo">Waleed Asad</a>
+        <a href="#menu" class="menu-btn">
+            <span>☰</span>
+            <span>Menu</span>
+        </a>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navbar-wrapper">
+        <nav class="navbar">
+            <a href="#home" class="nav-btn"><i class="fa-solid fa-house-chimney"></i></a>
+            <a href="#skills" class="nav-btn">Skills</a>
+            <a href="#about" class="nav-btn">About</a>
+            <a href="#portfolio" class="nav-btn">Portfolio <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#testimonials" class="nav-btn">Reviews</a>
+            <a href="#contact" class="nav-btn primary">Contact me</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="abstract-white-background-4k-motion-graphics-background-loop-white-video-loop-1080-ytshorts.savetube.me_.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <div class="hero-left">
+                <span class="hero-label">Frontend Developer & Product Builder</span>
+                <h1 class="hero-name">Waleed</h1>
+            </div>
+            <div class="hero-right">
+                <span class="hero-title">Frontend Developer</span>
+                <h1 class="hero-name">Asad</h1>
+                <div class="hero-location">
+                    Skopje, Macedonia - <span id="local-time">--:--</span> GMT+2
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=700&fit=crop" alt="Waleed Asad">
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">/ Frontend Expertise, Stack, Execution</div>
+                <h2 class="section-title">What I do <span>best?</span></h2>
+                <p class="section-desc">I build production-ready digital products fast. From simple landing pages to complex web apps and desktop tools, I turn rough ideas into clean, scalable, high-converting experiences.</p>
+            </div>
+
+            <div class="skills-wrapper">
+                <div class="skills-grid">
+                    <div class="skill-card fade-in">
+                        <div class="skill-tag">Fast Shipping + Clean Code</div>
+                        <h3 class="skill-title">01. Frontend Engineering</h3>
+                        <p class="skill-desc">I craft fast, responsive, pixel-precise interfaces with maintainable architecture. My builds are optimized for UX, performance, accessibility, and long-term scale.</p>
+                        <ul class="skill-tools">
+                            <li>HTML5, CSS3/SCSS, JavaScript, TypeScript</li>
+                            <li>Component architecture, reusable UI systems</li>
+                            <li>Performance tuning, Lighthouse optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card fade-in">
+                        <div class="skill-tag">Enterprise-Friendly Frontend</div>
+                        <h3 class="skill-title">02. Angular Applications</h3>
+                        <p class="skill-desc">I develop robust Angular applications with clean module structure, stable state management, and predictable code patterns for long-term team velocity.</p>
+                        <ul class="skill-tools">
+                            <li>Angular architecture, routing, forms, guards</li>
+                            <li>RxJS flows and reactive UI handling</li>
+                            <li>Refactoring legacy apps to modern standards</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card fade-in">
+                        <div class="skill-tag">Production-Ready React Stack</div>
+                        <h3 class="skill-title">03. Next.js Development</h3>
+                        <p class="skill-desc">I build modern Next.js apps with real-world architecture, SEO foundations, and smooth deployment pipelines that are ready for growth from day one.</p>
+                        <ul class="skill-tools">
+                            <li>SSR, SSG, App Router, API routes</li>
+                            <li>Auth, protected routes, role-based UI flows</li>
+                            <li>Vercel deployments, monitoring, CI-friendly workflow</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card fade-in">
+                        <div class="skill-tag">No Mockup? No Problem.</div>
+                        <h3 class="skill-title">04. Build-First UI Development</h3>
+                        <p class="skill-desc">I often skip static mockups and build directly in code, iterating quickly until the product feels right. This process speeds delivery and reveals better design decisions in real context.</p>
+                        <ul class="skill-tools">
+                            <li>Rapid UI experimentation with real components</li>
+                            <li>Conversion-focused pages and app interfaces</li>
+                            <li>Clean animations, micro-interactions, polish</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card fade-in">
+                        <div class="skill-tag">Frontend + Backend Integration</div>
+                        <h3 class="skill-title">05. API & Data Integration</h3>
+                        <p class="skill-desc">I connect frontend systems with real APIs and backend services, building reliable data flows that keep applications accurate, fast, and easy to extend.</p>
+                        <ul class="skill-tools">
+                            <li>REST/JSON integration, error-safe UI states</li>
+                            <li>Auth-aware client architecture and token handling</li>
+                            <li>Data caching patterns and optimized request flow</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card fade-in">
+                        <div class="skill-tag">Cross-Platform Builder</div>
+                        <h3 class="skill-title">06. .NET, WPF & CSHTML</h3>
+                        <p class="skill-desc">Beyond the browser, I have hands-on experience with desktop and server-rendered ecosystems, allowing me to contribute across mixed stacks and legacy-to-modern transitions.</p>
+                        <ul class="skill-tools">
+                            <li>.NET WPF desktop interfaces and tooling</li>
+                            <li>CSHTML/Razor page work and component updates</li>
+                            <li>Pragmatic modernization with minimal disruption</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card fade-in">
+                        <div class="skill-tag">High Ownership Delivery</div>
+                        <h3 class="skill-title">07. Product Execution & Scale</h3>
+                        <p class="skill-desc">I move from idea to live product quickly and confidently. I own delivery, communication, and technical quality, while keeping business goals front and center.</p>
+                        <ul class="skill-tools">
+                            <li>Landing pages, SaaS dashboards, admin panels</li>
+                            <li>Web apps, internal tools, and desktop utilities</li>
+                            <li>Iterative releases with measurable improvements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skills-phone fade-in">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=650&fit=crop" alt="Portfolio Preview">
+                            <div class="phone-content">
+                                <h3>Waleed Asad</h3>
+                                <p>Frontend Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content fade-in">
+                    <div class="section-header">
+                        <div class="section-label">/ About Me</div>
+                        <h2 class="section-title"><span>Builder</span> at the Core</h2>
+                    </div>
+                    <div class="about-text">
+                        <p><strong>Frontend Developer. Product Thinker. Relentless Builder.</strong></p>
+                        <p>I do not wait on perfect mockups. I start building, test ideas in real code, and iterate aggressively until the product is both beautiful and useful. This approach consistently delivers faster outcomes and stronger user experiences.</p>
+                        <p>From simple static sites to advanced web apps and desktop tools, I bring high ownership, strong technical judgment, and serious execution speed to every project.</p>
+                    </div>
+                    <div class="about-buttons">
+                        <a href="https://wa.me/923119666212" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-calendar"></i> Schedule a call</a>
+                        <button class="btn btn-secondary" onclick="copyEmail()"><i class="fas fa-copy"></i> Copy email</button>
+                        <a href="#" class="btn btn-secondary"><i class="fas fa-file"></i> Download CV</a>
+                    </div>
+                    <div class="rating-box">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <div class="rating-text">4.9 / 5</div>
+                        <p>Trusted by over 130+ clients</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/in/muhammad-waleed-asad-8532ab262/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/923119666212" class="social-link" title="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&h=700&fit=crop" alt="Waleed Asad">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span>13+ Years of Experience</span>
+            <span>600+ Successful Projects</span>
+            <span>130+ Reviews-Testimonials</span>
+            <span>99% Client Satisfaction</span>
+            <span>Next.js, Angular, .NET, WPF</span>
+            <span>High-Performance Frontend Delivery</span>
+            <span>Build-First Product Workflow</span>
+            <span>13+ Years of Experience</span>
+            <span>600+ Successful Projects</span>
+            <span>130+ Reviews-Testimonials</span>
+            <span>99% Client Satisfaction</span>
+            <span>Next.js, Angular, .NET, WPF</span>
+            <span>High-Performance Frontend Delivery</span>
+            <span>Build-First Product Workflow</span>
+        </div>
+    </div>
+
+    <!-- Awards Section -->
+    <section id="awards" class="awards">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">/ Career Highlights</div>
+                <h2 class="section-title"><span>Recognition</span> and Milestones</h2>
+                <p class="section-desc">Strong delivery leaves a trail. These highlights reflect consistent output, technical quality, and the ability to ship products that perform in real-world use.</p>
+            </div>
+            <div class="awards-list">
+                <div class="award-item fade-in">
+                    <div class="award-title">Top Frontend Portfolio Recognition</div>
+                    <div class="award-org">Web Design Awards</div>
+                    <div class="award-date">April 3, 2026</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Project of The Day</div>
+                    <div class="award-org">Frontend Showcase</div>
+                    <div class="award-date">March 22, 2026</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Site of The Day Nominee</div>
+                    <div class="award-org">Awwwards</div>
+                    <div class="award-date">March 21, 2026</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Best Product UI Nominee</div>
+                    <div class="award-org">WD Awards</div>
+                    <div class="award-date">March 17, 2026</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Portfolio of The Day</div>
+                    <div class="award-org">Foliobin</div>
+                    <div class="award-date">March 03, 2026</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Site of The Month</div>
+                    <div class="award-org">Web Design Awards</div>
+                    <div class="award-date">March, 2026</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Frontend Excellence Highlight</div>
+                    <div class="award-org">Foliobin</div>
+                    <div class="award-date">February 20, 2026</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Site of The Day</div>
+                    <div class="award-org">Web Design Awards</div>
+                    <div class="award-date">Nov 24, 2025</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Top CSS Architecture Award</div>
+                    <div class="award-org">CSS Nectar</div>
+                    <div class="award-date">October 8, 2025</div>
+                </div>
+                <div class="award-item fade-in">
+                    <div class="award-title">Frontend Innovation Mention</div>
+                    <div class="award-org">Web Guru Awards</div>
+                    <div class="award-date">October 3, 2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="portfolio-header fade-in">
+                <div>
+                    <div class="section-label">/ Portfolio Projects</div>
+                    <h2 class="section-title">Selected <span>Work Samples</span></h2>
+                    <p class="section-desc">A curated set of projects that show my frontend range: conversion-focused websites, scalable web apps, and practical tools built for real users.</p>
+                </div>
+                <a href="#" class="portfolio-cta-btn">Complete Portfolio <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop" alt="AOJ Web Project">
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop" alt="Mobile App Interface Development">
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&h=400&fit=crop" alt="Digital Services">
+                </div>
+                <div class="portfolio-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Frontend Product Dashboard">
+                </div>
+                <div class="portfolio-item fade-in" style="grid-column: 1 / -1; text-align: center; display: grid; place-items: center; min-height: 180px;">
+                    <div>
+                        <p style="font-size: 16px; color: #555;">Click here to see my</p>
+                        <h3 style="font-size: 2.6rem; line-height: 1.1; letter-spacing: -1px;">Complete Portfolio</h3>
+                        <p style="font-size: 13px; color: #8f8f8f; margin-top: 8px;">Updated portfolio showcase, as of September, 2025.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="experience-header fade-in">
+                <div>
+                    <div class="section-label">/ Engineering Journey</div>
+                    <h2 class="section-title">Work <span>Experience</span></h2>
+                    <p class="section-desc">Hands-on frontend and product delivery across web, app, and desktop environments.</p>
+                </div>
+                <a href="#" class="download-cv-btn"><i class="fas fa-download"></i> Download CV</a>
+            </div>
+            <div class="experience-list">
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Senior Frontend Developer</div>
+                        <div class="exp-company">Product & SaaS Projects</div>
+                    </div>
+                    <div class="exp-date">2025 – Current</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Frontend Lead / Independent Builder</div>
+                        <div class="exp-company">DirectlyWaleed</div>
+                    </div>
+                    <div class="exp-date">2023 – Current</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Frontend Engineer</div>
+                        <div class="exp-company">Involve</div>
+                    </div>
+                    <div class="exp-date">2024 – 2025</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Web Application Developer</div>
+                        <div class="exp-company">Simplify-ERP</div>
+                    </div>
+                    <div class="exp-date">2021 – 2023</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Co-Founder / Technical Builder</div>
+                        <div class="exp-company">GGHOSTMK</div>
+                    </div>
+                    <div class="exp-date">2020 – 2022</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Frontend & CSHTML Developer</div>
+                        <div class="exp-company">Simplify-ERP</div>
+                    </div>
+                    <div class="exp-date">2019 – 2021</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Angular Developer (Project Contributor)</div>
+                        <div class="exp-company">Client Projects</div>
+                    </div>
+                    <div class="exp-date">2019</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Next.js & React Developer</div>
+                        <div class="exp-company">PeoplePerHour</div>
+                    </div>
+                    <div class="exp-date">2018 – 2020</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Frontend Developer</div>
+                        <div class="exp-company">PeoplePerHour</div>
+                    </div>
+                    <div class="exp-date">2016 – 2018</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">WPF Desktop App Developer (Project)</div>
+                        <div class="exp-company">Independent Contract</div>
+                    </div>
+                    <div class="exp-date">2016</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">JavaScript Website Developer</div>
+                        <div class="exp-company">Fiverr</div>
+                    </div>
+                    <div class="exp-date">2016</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">Frontend Web Developer</div>
+                        <div class="exp-company">Upwork</div>
+                    </div>
+                    <div class="exp-date">2015 – 2016</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">UI Builder for Web Startups</div>
+                        <div class="exp-company">YouTube/Twitch/Startup Collaborations</div>
+                    </div>
+                    <div class="exp-date">2012 – 2013</div>
+                </div>
+                <div class="exp-item fade-in">
+                    <div>
+                        <div class="exp-title">HTML/CSS/JS Website Developer</div>
+                        <div class="exp-company">Freelance</div>
+                    </div>
+                    <div class="exp-date">2010 – 2012</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">/ Community Trust - Client Feedback</div>
+                <h2 class="section-title">What <span>people</span> say</h2>
+                <p class="section-desc">A few thoughts from teams and founders who trusted me to build and ship real products under real deadlines.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">I asked and Waleed delivered honestly. I didn't want a generic website, I wanted something I could build as a hobby and actually be proud of. He got that instantly and gave me what I needed. I [...]</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Giovanni</div>
+                        <div class="testimonial-role">Frontend Development</div>
+                        <div class="testimonial-date">March 2026</div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">Waleed is very talented in frontend development and product execution. I have an AI startup and needed help with technical direction and implementation speed, and Waleed delivered exactly that [...]</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Oliver S.</div>
+                        <div class="testimonial-role">Frontend & Product Delivery</div>
+                        <div class="testimonial-date">February 2026</div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">I have been working with Waleed for a month now and he is helping my company as a Frontend Team Lead. I am very impressed with the speed, quality, and structure he introduced across the product [...]</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Rilind</div>
+                        <div class="testimonial-role">Frontend Team Lead</div>
+                        <div class="testimonial-date">September 2025</div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">Fast, reliable, and highly technical, he turned a vague idea into a polished product. His frontend execution and product judgment are genuinely top-tier [...]</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Tomas</div>
+                        <div class="testimonial-role">Web Application Development</div>
+                        <div class="testimonial-date">September 2025</div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">I worked with Waleed on a Webflow project and was impressed right away. He got things moving quickly, kept everything clear, and delivered exactly what was needed. What I appreciated most wa [...]</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Siraj</div>
+                        <div class="testimonial-role">Next.js Web Application</div>
+                        <div class="testimonial-date">September 2025</div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimonial-text">I asked for a minimal but strong product interface, and that is exactly what I got. The app feels fast, clean, and built for real users [...]</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-name">Katarina</div>
+                        <div class="testimonial-role">Frontend UI Development</div>
+                        <div class="testimonial-date">August 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">/ Common questions and answers</div>
+                <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>How do you ensure frontend code quality at speed?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I use a build-first workflow with strict structure, reusable components, and continuous testing in real browser conditions. This helps me ship quickly without sacrificing maintainability.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>What kinds of projects have you built?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Landing pages, SaaS dashboards, internal tools, customer portals, and desktop-style utilities. I adapt to startup speed and enterprise-level complexity equally well.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Do you work independently or with teams?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Both. I can own full frontend delivery solo or plug into existing engineering teams. I collaborate well with product, backend, QA, and stakeholders to keep delivery aligned.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>What makes your workflow effective?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I communicate clearly, iterate fast, and keep architecture practical. I focus on outcomes, not ego, and that keeps projects moving with fewer blockers.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>How do you handle changing requirements?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I expect change and design systems that can evolve. I break work into flexible milestones, so updates become controlled improvements instead of expensive rewrites.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Can you handle large, complex frontend systems?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. I have worked on multi-page and app-like systems with heavy data flow, role-based interfaces, and scalable component structures. Complexity is where I perform best.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>Why do clients trust you for delivery?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Because I ship. I combine speed, quality, and honest communication. Clients know they will get progress, clarity, and a product that works in production.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <div class="faq-question">
+                        <span>What frontend stacks are you strongest with?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Next.js, Angular, JavaScript/TypeScript, and modern HTML/CSS architecture are my strongest stacks. I also have practical experience with .NET, WPF, and CSHTML environments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">/ Contact Information</div>
+                <h2 class="section-title">Let's get <span>started</span></h2>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-form fade-in">
+                    <h3 style="font-size: 2.5rem; font-weight: 600; margin-bottom: 10px; color: #1a1a1a;">How can I help?</h3>
+                    <p style="color: #666; margin-bottom: 40px;">I would love to hear more about your project or company.</p>
+
+                    <form onsubmit="event.preventDefault(); alert('Thank you for your message! I will get back to you soon.');">
+                        <div class="form-group">
+                            <label class="form-label">Your Full Name <span>*</span></label>
+                            <input type="text" class="form-input" placeholder="John Smith *" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Your Role <span>*</span></label>
+                            <input type="text" class="form-input" placeholder="Founder, Recruiter, Freelancer, etc. *" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Your E-mail Address <span>*</span></label>
+                            <input type="email" class="form-input" placeholder="mail@example.com *" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Your status? <span>*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" name="status" id="project" value="project">
+                                    <label for="project">I have a project</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="status" id="recruiter" value="recruiter">
+                                    <label for="recruiter">I am a recruiter</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">More info <span>*</span></label>
+                            <textarea class="form-input form-textarea" placeholder="What's this about? Project, hiring, or opportunity? *" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit <i class="fas fa-arrow-right"></i></button>
+                    </form>
+                </div>
+                <div class="contact-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&h=600&fit=crop" alt="Waleed Asad">
+                    <div class="badge">
+                        <span class="badge-icon"><i class="fas fa-trophy"></i></span>
+                        <span>Top Rated</span>
+                        <span>Developer</span>
+                    </div>
+                    <div class="contact-quote">
+                        <p>If the work above fits what you need, send me a note. Share the goal, a link, budget range, and when you want to start. I'll reply with the next step.</p>
+                        <span class="name">Waleed Asad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-large-text">Waleed Asad</div>
+
+            <div class="footer-marquee">
+                <div class="footer-marquee-content">
+                    <span>Let's work together</span>
+                    <span class="star">✱</span>
+                    <span>Let's work together</span>
+                    <span class="star">✱</span>
+                    <span>Let's work together</span>
+                    <span class="star">✱</span>
+                    <span>Let's work together</span>
+                    <span class="star">✱</span>
+                    <span>Let's work together</span>
+                    <span class="star">✱</span>
+                    <span>Let's work together</span>
+                    <span class="star">✱</span>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <a href="mailto:waleedasad175@gmail.com"><i class="fas fa-envelope"></i> waleedasad175@gmail.com</a>
+                <a href="tel:+923119666212"><i class="fas fa-phone"></i> +92 311 9666212</a>
+                <a href="https://wa.me/923119666212" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp: +92 311 9666212</a>
+            </div>
+
+            <div class="footer-bottom">
+                <span>2025</span>
+                <span>All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" onclick="scrollToTop()"><i class="fa-solid fa-angle-up"></i></button>
+
+    <script>
+        // Local Time Update
+        function updateLocalTime() {
+            const timeElement = document.getElementById('local-time');
+            if (timeElement) {
+                const now = new Date();
+                const options = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Skopje' };
+                timeElement.textContent = now.toLocaleTimeString('en-US', options);
+            }
+        }
+        updateLocalTime();
+        setInterval(updateLocalTime, 60000);
+
+        // Copy Email Function
+        function copyEmail() {
+            const email = 'waleedasad175@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                alert('Email copied to clipboard: ' + email);
+            }).catch(err => {
+                console.error('Failed to copy email:', err);
+            });
+        }
+
+        // Intro greeting sequence
+        const introOverlay = document.getElementById('intro-overlay');
+        const introText = document.getElementById('intro-text');
+        const greetings = [
+            'Hello',     // English
+           // 'Hola',      // Spanish
+            'Bonjour',   // French
+           // 'Hallo',     // German
+            'Ciao',      // Italian
+            //'Ola',       // Portuguese
+           
+           // 'Ni Hao',    // Chinese transliteration
+            //'Konnichiwa',// Japanese transliteration
+            'Annyeong',  // Korean transliteration
+            'Marhaba',   // Arabic transliteration
+            //'Namaste'    // Hindi
+        ];
+        let greetingIndex = 0;
+
+        const introInterval = setInterval(() => {
+            greetingIndex += 1;
+            if (greetingIndex < greetings.length) {
+                introText.textContent = greetings[greetingIndex];
+                return;
+            }
+            clearInterval(introInterval);
+            introOverlay.classList.add('hidden');
+        }, 480);
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll Animation (Fade In)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
