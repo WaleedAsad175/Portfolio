@@ -10,6 +10,8 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="Waleed Asad">
     <link rel="canonical" href="/">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+    <link rel="shortcut icon" href="./assets/favicon.svg">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="Waleed Asad - Frontend Developer">
@@ -289,7 +291,7 @@
             filter: brightness(0.9) contrast(1.05);
         }
 
-        .hero::before {
+        /* .hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -301,7 +303,7 @@
                 linear-gradient(120deg, rgba(255,255,255,0.3), rgba(0,0,0,0.04));
             pointer-events: none;
             z-index: 1;
-        }
+        } */
 
         .hero-content {
             display: grid;
@@ -880,6 +882,12 @@
             transform: scale(1.02);
         }
 
+        .portfolio-more-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
         /* Experience Section */
         .experience {
             background: #eaeaea;
@@ -1273,7 +1281,7 @@
             font-size: clamp(4rem, 12vw, 10rem);
             font-weight: 700;
             color: transparent;
-            -webkit-text-stroke: 1px #ccc;
+            -webkit-text-stroke: 2px #525252;
             text-align: center;
             margin-bottom: 60px;
             letter-spacing: -5px;
@@ -1838,7 +1846,7 @@
                     <div class="about-buttons">
                         <a href="https://wa.me/923119666212" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><i class="fas fa-calendar"></i> Schedule a call</a>
                         <button class="btn btn-secondary" onclick="copyEmail()"><i class="fas fa-copy"></i> Copy email</button>
-                        <a href="#" class="btn btn-secondary"><i class="fas fa-file"></i> Download CV</a>
+                        <!-- <a href="#" class="btn btn-secondary"><i class="fas fa-file"></i> Download CV</a> -->
                     </div>
                     <div class="rating-box">
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
@@ -1892,52 +1900,42 @@
                 <div class="award-item fade-in">
                     <div class="award-title">Top Frontend Portfolio Recognition</div>
                     <div class="award-org">Web Design Awards</div>
-                    <div class="award-date">April 3, 2026</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Project of The Day</div>
                     <div class="award-org">Frontend Showcase</div>
-                    <div class="award-date">March 22, 2026</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Site of The Day Nominee</div>
                     <div class="award-org">Awwwards</div>
-                    <div class="award-date">March 21, 2026</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Best Product UI Nominee</div>
                     <div class="award-org">WD Awards</div>
-                    <div class="award-date">March 17, 2026</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Portfolio of The Day</div>
                     <div class="award-org">Foliobin</div>
-                    <div class="award-date">March 03, 2026</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Site of The Month</div>
                     <div class="award-org">Web Design Awards</div>
-                    <div class="award-date">March, 2026</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Frontend Excellence Highlight</div>
                     <div class="award-org">Foliobin</div>
-                    <div class="award-date">February 20, 2026</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Site of The Day</div>
                     <div class="award-org">Web Design Awards</div>
-                    <div class="award-date">Nov 24, 2025</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Top CSS Architecture Award</div>
                     <div class="award-org">CSS Nectar</div>
-                    <div class="award-date">October 8, 2025</div>
                 </div>
                 <div class="award-item fade-in">
                     <div class="award-title">Frontend Innovation Mention</div>
                     <div class="award-org">Web Guru Awards</div>
-                    <div class="award-date">October 3, 2025</div>
                 </div>
             </div>
         </div>
@@ -1952,7 +1950,7 @@
                     <h2 class="section-title">Selected <span>Work Samples</span></h2>
                     <p class="section-desc">A curated set of projects that show my frontend range: conversion-focused websites, scalable web apps, and practical tools built for real users.</p>
                 </div>
-                <a href="#" class="portfolio-cta-btn">Complete Portfolio <i class="fas fa-arrow-right"></i></a>
+                <a href="./complete-portfolio.html" class="portfolio-cta-btn">Complete Portfolio <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item fade-in">
@@ -1967,13 +1965,15 @@
                 <div class="portfolio-item fade-in">
                     <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" alt="Frontend Product Dashboard">
                 </div>
-                <div class="portfolio-item fade-in" style="grid-column: 1 / -1; text-align: center; display: grid; place-items: center; min-height: 180px;">
-                    <div>
-                        <p style="font-size: 16px; color: #555;">Click here to see my</p>
-                        <h3 style="font-size: 2.6rem; line-height: 1.1; letter-spacing: -1px;">Complete Portfolio</h3>
-                        <p style="font-size: 13px; color: #8f8f8f; margin-top: 8px;">Updated portfolio showcase, as of September, 2025.</p>
+                <a href="./complete-portfolio.html" class="portfolio-more-link">
+                    <div class="portfolio-item fade-in" style="grid-column: 1 / -1; text-align: center; display: grid; place-items: center; min-height: 180px;">
+                        <div>
+                            <p style="font-size: 16px; color: #555;">Click here to see my</p>
+                            <h3 style="font-size: 2.6rem; line-height: 1.1; letter-spacing: -1px;">Complete Portfolio</h3>
+                            <p style="font-size: 13px; color: #8f8f8f; margin-top: 8px;">Updated portfolio showcase, as of April, 2026.</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -1995,98 +1995,84 @@
                         <div class="exp-title">Senior Frontend Developer</div>
                         <div class="exp-company">Product & SaaS Projects</div>
                     </div>
-                    <div class="exp-date">2025 – Current</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Frontend Lead / Independent Builder</div>
                         <div class="exp-company">DirectlyWaleed</div>
                     </div>
-                    <div class="exp-date">2023 – Current</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Frontend Engineer</div>
                         <div class="exp-company">Involve</div>
                     </div>
-                    <div class="exp-date">2024 – 2025</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Web Application Developer</div>
                         <div class="exp-company">Simplify-ERP</div>
                     </div>
-                    <div class="exp-date">2021 – 2023</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Co-Founder / Technical Builder</div>
                         <div class="exp-company">GGHOSTMK</div>
                     </div>
-                    <div class="exp-date">2020 – 2022</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Frontend & CSHTML Developer</div>
                         <div class="exp-company">Simplify-ERP</div>
                     </div>
-                    <div class="exp-date">2019 – 2021</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Angular Developer (Project Contributor)</div>
                         <div class="exp-company">Client Projects</div>
                     </div>
-                    <div class="exp-date">2019</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Next.js & React Developer</div>
                         <div class="exp-company">PeoplePerHour</div>
                     </div>
-                    <div class="exp-date">2018 – 2020</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Frontend Developer</div>
                         <div class="exp-company">PeoplePerHour</div>
                     </div>
-                    <div class="exp-date">2016 – 2018</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">WPF Desktop App Developer (Project)</div>
                         <div class="exp-company">Independent Contract</div>
                     </div>
-                    <div class="exp-date">2016</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">JavaScript Website Developer</div>
                         <div class="exp-company">Fiverr</div>
                     </div>
-                    <div class="exp-date">2016</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">Frontend Web Developer</div>
                         <div class="exp-company">Upwork</div>
                     </div>
-                    <div class="exp-date">2015 – 2016</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">UI Builder for Web Startups</div>
                         <div class="exp-company">YouTube/Twitch/Startup Collaborations</div>
                     </div>
-                    <div class="exp-date">2012 – 2013</div>
                 </div>
                 <div class="exp-item fade-in">
                     <div>
                         <div class="exp-title">HTML/CSS/JS Website Developer</div>
                         <div class="exp-company">Freelance</div>
                     </div>
-                    <div class="exp-date">2010 – 2012</div>
                 </div>
             </div>
         </div>
@@ -2103,55 +2089,55 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-text">I asked and Waleed delivered honestly. I didn't want a generic website, I wanted something I could build as a hobby and actually be proud of. He got that instantly and gave me what I needed. I [...]</p>
+                    <p class="testimonial-text">I needed a local business website that looked modern but still loaded fast on mobile. Waleed handled everything from layout to gallery interactions and SEO setup, and the final result felt polished and practical for real customers.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-name">Giovanni</div>
-                        <div class="testimonial-role">Frontend Development</div>
+                        <div class="testimonial-role">Business Website Owner</div>
                         <div class="testimonial-date">March 2026</div>
                     </div>
                 </div>
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-text">Waleed is very talented in frontend development and product execution. I have an AI startup and needed help with technical direction and implementation speed, and Waleed delivered exactly that [...]</p>
+                    <p class="testimonial-text">For our AI product website, we wanted something conversion-focused, not just visually nice. Waleed translated product ideas into clear sections, strong CTAs, and cleaner user flow. We saw better clarity in messaging right after launch.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-name">Oliver S.</div>
-                        <div class="testimonial-role">Frontend & Product Delivery</div>
+                        <div class="testimonial-role">AI Product Founder</div>
                         <div class="testimonial-date">February 2026</div>
                     </div>
                 </div>
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-text">I have been working with Waleed for a month now and he is helping my company as a Frontend Team Lead. I am very impressed with the speed, quality, and structure he introduced across the product [...]</p>
+                    <p class="testimonial-text">Our platform had multiple modules and inconsistent frontend behavior. Waleed brought structure quickly, improved reusable patterns, and kept delivery moving even with changing requirements. The codebase became much easier for the team to maintain.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-name">Rilind</div>
-                        <div class="testimonial-role">Frontend Team Lead</div>
+                        <div class="testimonial-role">Product Team Lead</div>
                         <div class="testimonial-date">September 2025</div>
                     </div>
                 </div>
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-text">Fast, reliable, and highly technical, he turned a vague idea into a polished product. His frontend execution and product judgment are genuinely top-tier [...]</p>
+                    <p class="testimonial-text">We approached Waleed with only a rough concept for a SaaS interface. He helped shape the UX, built the frontend quickly, and kept every iteration focused on real user behavior. It felt like working with someone who understands both product and engineering.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-name">Tomas</div>
-                        <div class="testimonial-role">Web Application Development</div>
+                        <div class="testimonial-role">SaaS Product Manager</div>
                         <div class="testimonial-date">September 2025</div>
                     </div>
                 </div>
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-text">I worked with Waleed on a Webflow project and was impressed right away. He got things moving quickly, kept everything clear, and delivered exactly what was needed. What I appreciated most wa [...]</p>
+                    <p class="testimonial-text">We needed secure lead capture from a static frontend and expected this to be complicated. Waleed implemented a clean encrypted form flow with backend integration and made the full setup feel straightforward. Communication was clear throughout.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-name">Siraj</div>
-                        <div class="testimonial-role">Next.js Web Application</div>
+                        <div class="testimonial-role">Agency Operations</div>
                         <div class="testimonial-date">September 2025</div>
                     </div>
                 </div>
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-text">I asked for a minimal but strong product interface, and that is exactly what I got. The app feels fast, clean, and built for real users [...]</p>
+                    <p class="testimonial-text">The healthcare booking flow needed to work smoothly on mobile and in two languages. Waleed improved the frontend architecture, fixed routing pain points, and made the journey from search to booking much more intuitive for users.</p>
                     <div class="testimonial-author">
                         <div class="testimonial-name">Katarina</div>
-                        <div class="testimonial-role">Frontend UI Development</div>
+                        <div class="testimonial-role">Healthcare Product Stakeholder</div>
                         <div class="testimonial-date">August 2025</div>
                     </div>
                 </div>

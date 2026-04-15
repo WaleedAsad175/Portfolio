@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Portfolio | Waleed Asad</title>
+    <meta name="description" content="Extended portfolio of frontend, full-stack, and product engineering projects by Waleed Asad.">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+    <link rel="shortcut icon" href="./assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f2f2f2;
+            --surface: #ffffff;
+            --text: #1f1f1f;
+            --muted: #666666;
+            --stroke: #dfdfdf;
+            --primary: #e27500;
+            --primary-dark: #c46200;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1180px, 92vw);
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            background: rgba(242, 242, 242, 0.92);
+            border-bottom: 1px solid var(--stroke);
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 74px;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .brand span {
+            color: var(--primary);
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--text);
+            background: var(--surface);
+            border: 1px solid var(--stroke);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .home-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 82px 0 34px;
+        }
+
+        .section-label {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.35rem);
+            line-height: 1.12;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 800px;
+            font-size: 1.06rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            padding-bottom: 70px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--stroke);
+            border-radius: 20px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.03);
+        }
+
+        .project-card h2 {
+            font-size: 1.35rem;
+            line-height: 1.25;
+            letter-spacing: -0.4px;
+        }
+
+        .project-overview {
+            color: #353535;
+            font-size: 0.98rem;
+        }
+
+        .project-highlights {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .project-highlights li {
+            color: #2f2f2f;
+            font-size: 0.95rem;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .project-highlights li::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--primary);
+            position: absolute;
+            top: 10px;
+            left: 0;
+        }
+
+        .meta-line {
+            font-size: 0.92rem;
+            color: var(--muted);
+            border-top: 1px dashed var(--stroke);
+            padding-top: 10px;
+        }
+
+        .meta-line strong {
+            color: #1f1f1f;
+        }
+
+        .project-actions {
+            margin-top: auto;
+            padding-top: 6px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            padding: 0 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+
+        .project-link:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 900px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="./index.html">Waleed <span>Asad</span></a>
+            <a class="home-link" href="./index.html">Back to Home</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="section-label">Complete Portfolio</div>
+                <h1>Extended Project Showcase</h1>
+                <p>
+                    This page includes additional projects across marketing websites, SaaS products, healthcare platforms, enterprise systems, and productivity tools.
+                </p>
+            </div>
+        </section>
+
+        <section class="container project-grid">
+            <article class="project-card">
+                <h2>MicroKosm AI Agency Website</h2>
+                <p class="project-overview">Production marketing website for an AI/software services company with a static frontend and FastAPI email microservice, designed for secure lead capture and SEO-ready discoverability.</p>
+                <ul class="project-highlights">
+                    <li>Built a secure contact pipeline using AES-GCM + RSA-OAEP encryption from browser to backend.</li>
+                    <li>Implemented interactive frontend behaviors including typed hero messaging, counters, and carousel logic.</li>
+                    <li>Added SEO assets including JSON-LD schema, robots.txt, and sitemap integration.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> HTML5, CSS3, JavaScript, FastAPI, Python, Pydantic, Cryptography, SMTP</p>
+                <p class="meta-line"><strong>Impact:</strong> Conversion-focused agency site with secure inquiry handling and production deployment readiness.</p>
+                <div class="project-actions"><a class="project-link" href="https://microkosm.com.pk/" target="_blank" rel="noopener noreferrer">Visit Website</a></div>
+            </article>
+
+            <article class="project-card">
+                <h2>itsAI Product Suite Website</h2>
+                <p class="project-overview">Multi-page product marketing site for enterprise AI tools, built for product discovery, lead conversion, and measurable behavior tracking across channels.</p>
+                <ul class="project-highlights">
+                    <li>Shipped product detail pages with direct CTAs to live apps, booking flows, and contact routes.</li>
+                    <li>Integrated Web3Forms, WhatsApp deep links, and Calendly for low-friction lead capture.</li>
+                    <li>Implemented technical SEO and analytics instrumentation with GA and Microsoft Clarity.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> HTML5, CSS3, JavaScript, Bootstrap 5, JSON-LD, Web3Forms, gtag.js, Clarity</p>
+                <p class="meta-line"><strong>Impact:</strong> Production-ready product suite site with structured conversion paths and tracking hooks.</p>
+                <div class="project-actions"><a class="project-link" href="https://itsai.tech/" target="_blank" rel="noopener noreferrer">Visit Website</a></div>
+            </article>
+
+            <article class="project-card">
+                <h2>SkoolApp Landing & CMS Platform</h2>
+                <p class="project-overview">Angular landing experience plus FastAPI CMS backend for dynamic blog/news operations, trial onboarding, and content publishing workflows.</p>
+                <ul class="project-highlights">
+                    <li>Implemented pricing and plan logic including annual discounts and add-on totals.</li>
+                    <li>Built two-step trial registration with reCAPTCHA v3 and API-compatible payload mapping.</li>
+                    <li>Developed CRUD/publish endpoints with slug-based routing and image upload handling.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> Angular 18, TypeScript, FastAPI, SQLAlchemy, SQL Server, pyodbc</p>
+                <p class="meta-line"><strong>Impact:</strong> Practical acquisition and content operations stack for school product onboarding.</p>
+                <div class="project-actions"><a class="project-link" href="https://skoolapp.pk/" target="_blank" rel="noopener noreferrer">Visit Website</a></div>
+            </article>
+
+            <article class="project-card">
+                <h2>Ajwa Dollar Shop Website</h2>
+                <p class="project-overview">Single-page local business website designed to improve product discoverability and visit intent through lightweight interactions and local SEO metadata.</p>
+                <ul class="project-highlights">
+                    <li>Built category-based product catalog and responsive card layouts for mobile and desktop.</li>
+                    <li>Implemented hero/gallery carousels with autoplay, manual controls, and swipe support.</li>
+                    <li>Added lightbox gallery, dark/light theme persistence, and structured LocalBusiness schema.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> HTML5, CSS3, JavaScript (ES6), Font Awesome, JSON-LD, localStorage</p>
+                <p class="meta-line"><strong>Impact:</strong> Deployable storefront website improving search-to-visit decision speed.</p>
+                <div class="project-actions"><a class="project-link" href="https://ajwadollarshop.com/" target="_blank" rel="noopener noreferrer">Visit Website</a></div>
+            </article>
+
+            <article class="project-card">
+                <h2>Al-Shifa Dental Clinic Website</h2>
+                <p class="project-overview">Mobile-first single-page clinic website focused on service clarity, specialist visibility, and fast contact conversion via tap-to-call and map-based location discovery.</p>
+                <ul class="project-highlights">
+                    <li>Implemented full frontend architecture with responsive layout and GSAP scroll-driven interactions.</li>
+                    <li>Refactored fixed header behavior and solved mobile overflow/layout issues.</li>
+                    <li>Standardized contact number formatting across UI, tel links, and structured data.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> HTML5, Tailwind CSS, JavaScript, GSAP, ScrollTrigger, JSON-LD, Google Maps Embed</p>
+                <p class="meta-line"><strong>Impact:</strong> Production-ready clinic site with stronger conversion flow and maintainable structure.</p>
+                <div class="project-actions"><a class="project-link" href="https://newalshifadentalclinic.com/" target="_blank" rel="noopener noreferrer">Visit Website</a></div>
+            </article>
+
+            <article class="project-card">
+                <h2>Dsmart AI</h2>
+                <p class="project-overview">Angular healthcare platform that unifies AI assistance, provider search, multilingual content, and appointment lifecycle workflows in one user journey.</p>
+                <ul class="project-highlights">
+                    <li>Designed service-driven frontend architecture for auth, localization, booking, and content integrations.</li>
+                    <li>Built route-prefix and device-detection logic to unify mobile, desktop, and app-entry navigation.</li>
+                    <li>Connected AI chat/recommendation flows directly to actionable appointment paths.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> Angular 16, TypeScript, Angular Material, Bootstrap 5, RxJS, Contentful SDK</p>
+                <p class="meta-line"><strong>Impact:</strong> Reduced user friction from medical inquiry to provider selection and booking action.</p>
+                <div class="project-actions"><a class="project-link" href="https://dsmart.ai/" target="_blank" rel="noopener noreferrer">Visit Website</a></div>
+            </article>
+
+            <article class="project-card">
+                <h2>AI Hotel Voice Receptionist Frontend</h2>
+                <p class="project-overview">React-based landing and interaction interface for an AI hotel receptionist, combining marketing experience with real-time voice demo capabilities.</p>
+                <ul class="project-highlights">
+                    <li>Built real-time interaction UI with mic capture, transcription rendering, and state feedback.</li>
+                    <li>Designed orb visualizer behavior for listening/speaking transitions with smooth state changes.</li>
+                    <li>Implemented conversion funnel from product narrative to Calendly demo booking.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> React, TypeScript, Vite, Tailwind CSS, WebSocket API, Web Audio API</p>
+                <p class="meta-line"><strong>Impact:</strong> Conversion-focused demo flow that makes voice capabilities immediately testable.</p>
+            </article>
+
+            <article class="project-card">
+                <h2>Alfacore Construction Website</h2>
+                <p class="project-overview">Multi-page renovation and construction company website for service discovery, project credibility, and direct estimate-request conversion.</p>
+                <ul class="project-highlights">
+                    <li>Built shared front-end architecture for five static pages with reusable styling patterns.</li>
+                    <li>Implemented project filtering, lightbox viewer, counters, FAQs, and cross-page nav behavior.</li>
+                    <li>Added structured metadata and social preview tags for discoverability.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> HTML5, CSS3, JavaScript (ES6), Font Awesome, JSON-LD, Open Graph, Twitter Cards</p>
+                <p class="meta-line"><strong>Impact:</strong> Stronger lead-generation flow through direct CTA pathways and project proof presentation.</p>
+            </article>
+
+            <article class="project-card">
+                <h2>Precision Peptide Dosage Calculator</h2>
+                <p class="project-overview">Web calculator for peptide draw volume that converts mixed dosage units and displays exact syringe marks to reduce manual dosing errors.</p>
+                <ul class="project-highlights">
+                    <li>Implemented canonical-unit conversion pipeline across mg/mcg and mL/IU inputs.</li>
+                    <li>Built dosage concentration and draw-point logic for 30, 50, and 100-unit syringes.</li>
+                    <li>Added dynamic syringe visualization and over-capacity safety warnings.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> HTML5, CSS3, JavaScript (Vanilla), Flask scaffold, Font Awesome</p>
+                <p class="meta-line"><strong>Impact:</strong> Replaces multi-step manual calculations with a single, visual, safer dosing workflow.</p>
+            </article>
+
+            <article class="project-card">
+                <h2>Learning Activity Tracking Platform</h2>
+                <p class="project-overview">Cross-application tracking platform spanning web frontend, desktop companion app, APIs, and browser extension for secure learning-activity capture.</p>
+                <ul class="project-highlights">
+                    <li>Built Angular frontend and complete browser extension event-capture/API integration flow.</li>
+                    <li>Extended desktop companion functionality and implemented selected backend API enhancements.</li>
+                    <li>Resolved unstable request paths by debugging middleware and controller boundary behavior.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> Angular, TypeScript, C#, ASP.NET Core, EF Core, SQL Server, JWT, Chrome Extension MV3, WPF</p>
+                <p class="meta-line"><strong>Impact:</strong> Stabilized end-to-end monitoring pipeline and reduced manual session tracking effort.</p>
+            </article>
+
+            <article class="project-card">
+                <h2>CIM Document Approver Platform</h2>
+                <p class="project-overview">Multi-tenant finance document approval system with configurable stage workflows, role-aware access control, and full auditability of transaction actions.</p>
+                <ul class="project-highlights">
+                    <li>Implemented workflow execution for submission, approval, hold, reject, and bulk decision actions.</li>
+                    <li>Integrated JWT claim handling and Angular interception for tenant- and role-aware API access.</li>
+                    <li>Built audit timeline surfaces and connected password reset/tenant verification email flows.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> Angular 16, TypeScript, ASP.NET Core (.NET 6), EF Core, SQL Server, JWT, SMTP</p>
+                <p class="meta-line"><strong>Impact:</strong> Reduced manual approval overhead while strengthening governance and decision traceability.</p>
+            </article>
+
+            <article class="project-card">
+                <h2>Arabit AI Healthcare Landing Page</h2>
+                <p class="project-overview">Single-page healthcare marketing site adapted from a base template into a conversion-focused narrative for AI-enabled care services.</p>
+                <ul class="project-highlights">
+                    <li>Reworked content hierarchy and section strategy around services, FAQ, founders, and contact pathways.</li>
+                    <li>Implemented founder slider and tuned responsive behavior for variable content lengths.</li>
+                    <li>Adjusted styling/breakpoints for stable cross-device presentation.</li>
+                </ul>
+                <p class="meta-line"><strong>Tech:</strong> HTML5, CSS3, JavaScript, Bootstrap 5, Swiper.js, AOS, GLightbox, PHP scaffold</p>
+                <p class="meta-line"><strong>Impact:</strong> Lightweight, deployable lead-generation page for early-stage outreach and trust-building.</p>
+            </article>
+        </section>
+
+    </main>
+</body>
+</html>
